@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Info, ShieldCheck, Database } from 'lucide-react';
+import { Search, ShieldCheck, Database } from 'lucide-react';
 import type { NavigationTab } from '../../types';
 
 interface HeaderProps {

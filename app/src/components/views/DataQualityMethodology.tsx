@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
 import { 
-  FileCheck2, 
-  Database, 
   AlertTriangle, 
-  ShieldCheck, 
-  CheckCircle2, 
-  BookOpen, 
-  Layers,
   Sparkles,
-  Info,
-  HelpCircle,
-  ExternalLink,
   Coins
 } from 'lucide-react';
-import { CANDIDATES, DATA_QUALITY_SUMMARY, OFFICIAL_RR_PURSE_METRICS } from '../../data/intelligenceData';
+import { DATA_QUALITY_SUMMARY } from '../../data/intelligenceData';
 
 export const DataQualityMethodology: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'audit' | 'methodology' | 'inventory'>('audit');

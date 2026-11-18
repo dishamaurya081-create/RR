@@ -1,15 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Search, 
-  Filter, 
   ArrowUpDown, 
-  AlertTriangle, 
-  ShieldCheck, 
-  ExternalLink,
-  Crosshair,
-  Target,
-  Sparkles,
-  Plane,
   Eye
 } from 'lucide-react';
 import { CANDIDATES } from '../../data/intelligenceData';

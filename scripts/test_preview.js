@@ -22,10 +22,17 @@ setTimeout(() => {
       console.log('Received HTML Length:', data.length);
       console.log('HTML Title Verified:', data.includes('SupeRR Selector'));
       console.log('Root Element Verified:', data.includes('id="root"'));
-      console.log('JS Bundle Referenced:', data.includes('index-Dcl3O67F.js'));
-      console.log('CSS Bundle Referenced:', data.includes('index-C5jWn0dP.css'));
+      const jsMatch = data.match(/\/assets\/(index-[^"]+\.js)/);
+      const jsFileName = jsMatch ? jsMatch[1] : null;
+      console.log('JS Bundle Referenced:', jsFileName !== null, jsFileName);
 
-      http.get('http://127.0.0.1:4173/assets/index-Dcl3O67F.js', jsRes => {
+      if (!jsFileName) {
+        console.error('JS Bundle not found in HTML!');
+        child.kill();
+        process.exit(1);
+      }
+
+      http.get(`http://127.0.0.1:4173/assets/${jsFileName}`, jsRes => {
         console.log('JS Bundle Status Code:', jsRes.statusCode);
         let jsData = '';
         jsRes.on('data', chunk => jsData += chunk);

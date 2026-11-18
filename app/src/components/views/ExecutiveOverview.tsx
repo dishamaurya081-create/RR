@@ -1,20 +1,11 @@
 import React from 'react';
 import { 
-  Users, 
-  Award, 
   Target, 
   Crosshair, 
-  AlertTriangle, 
   ShieldCheck, 
-  TrendingUp, 
   Zap,
   ArrowRight,
-  ExternalLink,
-  Flame,
-  CheckCircle2,
-  Clock,
-  Coins,
-  Plane
+  Flame
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -25,8 +16,9 @@ import {
   ResponsiveContainer, 
   Cell
 } from 'recharts';
-import { CANDIDATES, OFFICIAL_RR_PURSE_METRICS, Candidate, DATA_QUALITY_SUMMARY } from '../../data/intelligenceData';
-import { NavigationTab } from '../../types';
+import { CANDIDATES } from '../../data/intelligenceData';
+import type { Candidate } from '../../data/intelligenceData';
+import type { NavigationTab } from '../../types';
 
 interface ExecutiveOverviewProps {
   onSelectPlayer: (player: Candidate) => void;
@@ -319,7 +311,7 @@ export const ExecutiveOverview: React.FC<ExecutiveOverviewProps> = ({
                 <YAxis dataKey="name" type="category" stroke="#94A3B8" fontSize={11} width={130} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#0F172A', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
-                  formatter={(val: any, name: any, item: any) => [
+                  formatter={(val: any, _name: any, item: any) => [
                     `${val} (Avg Balanced Score)`, 
                     `${item.payload.count} Players`
                   ]}

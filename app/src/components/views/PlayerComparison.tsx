@@ -1,29 +1,14 @@
 import React, { useState, useMemo } from 'react';
+import { AlertTriangle } from 'lucide-react';
 import { 
-  GitCompare, 
-  ArrowRight, 
-  AlertTriangle, 
-  ShieldCheck, 
-  TrendingUp, 
-  Crosshair, 
-  Target,
-  Sparkles,
-  Award
-} from 'lucide-react';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
   Tooltip, 
   ResponsiveContainer, 
-  Cell,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
-  Legend
+  RadarChart, 
+  PolarGrid, 
+  PolarAngleAxis, 
+  PolarRadiusAxis, 
+  Radar, 
+  Legend 
 } from 'recharts';
 import { CANDIDATES } from '../../data/intelligenceData';
 import type { Candidate } from '../../data/intelligenceData';
@@ -34,7 +19,7 @@ interface PlayerComparisonProps {
 }
 
 export const PlayerComparison: React.FC<PlayerComparisonProps> = ({ 
-  onSelectPlayer,
+  onSelectPlayer: _onSelectPlayer,
   preselectedPlayer
 }) => {
   // Default to comparing Rinku Singh (Original #1 Batter) vs Ashutosh Sharma (Alternative #10 Batter)

@@ -1,14 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Target, 
-  ShieldCheck, 
-  AlertTriangle, 
-  Search, 
-  TrendingDown, 
-  Award,
   Eye,
-  Info,
-  Sparkles
+  Info
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -32,7 +25,6 @@ interface BowlerIntelligenceProps {
 export const BowlerIntelligence: React.FC<BowlerIntelligenceProps> = ({ onSelectPlayer }) => {
   const [minBalls, setMinBalls] = useState(40);
   const [sourceFilter, setSourceFilter] = useState('All');
-  const [searchTerm, setSearchTerm] = useState('');
 
   // All 24 candidate records evaluated in the bowling pool
   const bowlers = useMemo(() => {
@@ -43,10 +35,9 @@ export const BowlerIntelligence: React.FC<BowlerIntelligenceProps> = ({ onSelect
     return bowlers.filter(b => {
       if (b.bowling.pressure_balls && b.bowling.pressure_balls < minBalls) return false;
       if (sourceFilter !== 'All' && b.candidate_source !== sourceFilter) return false;
-      if (searchTerm.trim() && !b.player_name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
       return true;
     }).sort((a, b) => (a.bowling.pressure_economy ?? 99) - (b.bowling.pressure_economy ?? 99)); // Lower economy is better
-  }, [bowlers, minBalls, sourceFilter, searchTerm]);
+  }, [bowlers, minBalls, sourceFilter]);
 
   // Economy ranking chart (lower is better)
   const rankingData = filteredBowlers.slice(0, 12).map(b => ({
@@ -154,7 +145,7 @@ export const BowlerIntelligence: React.FC<BowlerIntelligenceProps> = ({ onSelect
                 <YAxis dataKey="name" type="category" stroke="#94A3B8" fontSize={11} width={130} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#0F172A', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
-                  formatter={(val: any, name: any, item: any) => [
+                  formatter={(val: any, _name: any, item: any) => [
                     `${val} RPO (${item.payload.wickets} Wkts)`, 
                     `${item.payload.role} • ${item.payload.source}`
                   ]}

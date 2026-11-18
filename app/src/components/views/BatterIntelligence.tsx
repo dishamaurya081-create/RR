@@ -1,11 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Crosshair, 
-  TrendingUp, 
-  Zap, 
-  AlertTriangle, 
-  Search, 
-  BarChart3, 
   Eye,
   Sparkles
 } from 'lucide-react';
@@ -31,7 +25,6 @@ interface BatterIntelligenceProps {
 export const BatterIntelligence: React.FC<BatterIntelligenceProps> = ({ onSelectPlayer }) => {
   const [minBalls, setMinBalls] = useState(20);
   const [sourceFilter, setSourceFilter] = useState('All');
-  const [searchTerm, setSearchTerm] = useState('');
 
   // All 26 candidate records evaluated in the batting pool
   const batters = useMemo(() => {
@@ -42,10 +35,9 @@ export const BatterIntelligence: React.FC<BatterIntelligenceProps> = ({ onSelect
     return batters.filter(b => {
       if (b.batting.pressure_balls && b.batting.pressure_balls < minBalls) return false;
       if (sourceFilter !== 'All' && b.candidate_source !== sourceFilter) return false;
-      if (searchTerm.trim() && !b.player_name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
       return true;
     }).sort((a, b) => (b.batting.pressure_sr ?? 0) - (a.batting.pressure_sr ?? 0));
-  }, [batters, minBalls, sourceFilter, searchTerm]);
+  }, [batters, minBalls, sourceFilter]);
 
   // Ranking chart data
   const rankingChartData = filteredBatters.slice(0, 12).map(b => ({
@@ -152,7 +144,7 @@ export const BatterIntelligence: React.FC<BatterIntelligenceProps> = ({ onSelect
                 <YAxis dataKey="name" type="category" stroke="#94A3B8" fontSize={11} width={130} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#0F172A', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
-                  formatter={(val: any, name: any, item: any) => [
+                  formatter={(val: any, _name: any, item: any) => [
                     `${val} SR (${item.payload.role})`, 
                     item.payload.source
                   ]}

@@ -82,11 +82,19 @@ if (fs.existsSync('README.md')) {
 }
 
 console.log('Compressing submission_pack to supe_rr_selector_final_submission.zip...');
-// In PowerShell: Compress-Archive -Path submission_pack\* -DestinationPath supe_rr_selector_final_submission.zip -Force
-const res = spawnSync('powershell.exe', [
-  '-Command',
-  'Compress-Archive -Path submission_pack\\* -DestinationPath supe_rr_selector_final_submission.zip -Force'
+spawnSync('tar.exe', [
+  '-a',
+  '-c',
+  '-f',
+  'supe_rr_selector_final_submission.zip',
+  '-C',
+  'submission_pack',
+  '.'
 ], { stdio: 'inherit' });
+
+if (fs.existsSync(stageDir)) {
+  fs.rmSync(stageDir, { recursive: true, force: true });
+}
 
 if (fs.existsSync('supe_rr_selector_final_submission.zip')) {
   const stat = fs.statSync('supe_rr_selector_final_submission.zip');

@@ -3,10 +3,7 @@ import {
   X, 
   AlertTriangle, 
   ShieldCheck, 
-  TrendingUp, 
   Activity, 
-  Award, 
-  ExternalLink,
   Target,
   Crosshair,
   Sparkles
@@ -22,7 +19,6 @@ interface PlayerModalProps {
 export const PlayerModal: React.FC<PlayerModalProps> = ({ player, onClose, onCompareWith }) => {
   if (!player) return null;
 
-  const isBatter = player.player_type === 'Batter';
   const hasBattingStats = player.batting.pressure_sr !== null;
   const hasBowlingStats = player.bowling.pressure_economy !== null;
 

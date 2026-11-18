@@ -1,20 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Layers, 
-  Plus, 
-  Trash2, 
   ShieldCheck, 
   AlertTriangle, 
-  CheckCircle2, 
   Save, 
-  Copy, 
   RefreshCw,
   Sparkles,
-  Plane,
-  Award
+  Plane
 } from 'lucide-react';
 import { CANDIDATES, OFFICIAL_RR_2027_SQUAD } from '../../data/intelligenceData';
-import type { Candidate, SquadPlayer } from '../../data/intelligenceData';
 
 interface PositionSlot {
   order: number;
@@ -82,7 +75,6 @@ export const SquadCombinationBuilder: React.FC = () => {
   }, []);
 
   const playingXI = slots.slice(0, 11);
-  const impactPlayer = slots[11];
 
   const overseasInXI = playingXI.filter(s => s.isOverseas).length;
   const wkInXI = playingXI.filter(s => 

@@ -1,12 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  ShieldCheck, 
   AlertTriangle, 
-  CheckCircle2, 
-  HelpCircle, 
   Eye, 
-  BarChart3, 
-  Search,
   Info
 } from 'lucide-react';
 import { 
@@ -17,9 +12,7 @@ import {
   ZAxis, 
   Tooltip, 
   ResponsiveContainer, 
-  Cell,
-  BarChart,
-  Bar
+  Cell
 } from 'recharts';
 import { CANDIDATES } from '../../data/intelligenceData';
 import type { Candidate } from '../../data/intelligenceData';
@@ -30,7 +23,6 @@ interface PlayerReliabilityProps {
 
 export const PlayerReliability: React.FC<PlayerReliabilityProps> = ({ onSelectPlayer }) => {
   const [sampleFilter, setSampleFilter] = useState('All');
-  const [searchTerm, setSearchTerm] = useState('');
 
   // Sample adequacy counts
   const adequateCount = CANDIDATES.filter(c => c.reliability.sample_validation === 'Adequate consistency sample').length;
@@ -41,7 +33,6 @@ export const PlayerReliability: React.FC<PlayerReliabilityProps> = ({ onSelectPl
   const filteredCandidates = useMemo(() => {
     return CANDIDATES.filter((c) => {
       if (sampleFilter !== 'All' && c.reliability.sample_validation !== sampleFilter) return false;
-      if (searchTerm.trim() && !c.player_name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
       return true;
     }).sort((a, b) => {
       // Sort with real reliability scores first, then balanced score
@@ -49,7 +40,7 @@ export const PlayerReliability: React.FC<PlayerReliabilityProps> = ({ onSelectPl
       const scoreB = b.reliability.reliability_score ?? -1;
       return scoreB - scoreA;
     });
-  }, [sampleFilter, searchTerm]);
+  }, [sampleFilter]);
 
   // Scatter data: Consistency Matches vs Consistency Rate
   const scatterData = useMemo(() => {

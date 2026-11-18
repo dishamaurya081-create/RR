@@ -4,29 +4,22 @@ import {
   Plus, 
   Trash2, 
   AlertTriangle, 
-  ShieldCheck, 
   CheckCircle2, 
   RefreshCw, 
-  Sliders,
   Plane,
-  Coins,
-  Sparkles,
-  Info,
-  ExternalLink
+  Coins
 } from 'lucide-react';
 import { 
-  OFFICIAL_RR_2027_SQUAD, 
-  OFFICIAL_RR_PURSE_METRICS,
-  SquadPlayer, 
-  SquadRequirement 
+  OFFICIAL_RR_2027_SQUAD 
 } from '../../data/intelligenceData';
+import type { SquadPlayer } from '../../data/intelligenceData';
 
 export const SquadRequirements: React.FC = () => {
   // Live editable squad state initialized with the official 19-player squad
   const [squad, setSquad] = useState<SquadPlayer[]>(OFFICIAL_RR_2027_SQUAD);
   
   // Analytical recommended planning targets (Explicitly labeled as analytical recommendations)
-  const [targets, setTargets] = useState<Record<string, number>>({
+  const targets: Record<string, number> = {
     'WK': 2,
     'Top-order': 3,
     'Middle-order': 4,
@@ -34,7 +27,7 @@ export const SquadRequirements: React.FC = () => {
     'All-rounder': 4,
     'Pace': 8,
     'Spin': 4,
-  });
+  };
 
   // New player input state for simulator
   const [newPlayerName, setNewPlayerName] = useState('');
@@ -56,12 +49,10 @@ export const SquadRequirements: React.FC = () => {
   };
 
   const overseasCount = squad.filter(p => p.isOverseas).length;
-  const indianCount = squad.length - overseasCount;
   const availableSquadPositions = Math.max(0, 25 - squad.length);
   const availableOverseasPositions = Math.max(0, 8 - overseasCount);
   const retainedCount = squad.filter(p => p.status === 'Retained').length;
   const tradedCount = squad.filter(p => p.status === 'Traded in').length;
-  const acquiredCount = squad.filter(p => p.status === 'Acquired' || p.status === 'Provisional').length;
 
   // Add new player to simulator
   const handleAddPlayer = (e: React.FormEvent) => {

@@ -1,17 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Award, 
-  Search, 
-  Filter, 
   ShieldCheck, 
-  AlertTriangle, 
   Edit3, 
   Save, 
-  Download, 
-  Eye,
-  CheckCircle2,
-  Clock,
-  ExternalLink
+  Eye
 } from 'lucide-react';
 import { CANDIDATES } from '../../data/intelligenceData';
 import type { Candidate } from '../../data/intelligenceData';
