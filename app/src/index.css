@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-royals-pink: #EA1A85;
+    --color-royals-pink-light: #FF3B9E;
+    --color-royals-pink-dark: #C20E69;
+    --color-royals-blue: #1E3A8A;
+    --color-royals-gold: #D4AF37;
+    --color-dark-bg: #090D16;
+    --color-dark-surface: #0E1626;
+    --color-dark-card: #141F36;
+    --color-dark-border: #1E2D4A;
+  }
+
+  body {
+    background-color: #080C15;
+    color: #F1F5F9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-align: left;
+  }
+}
+
+/* Custom scrollbars for clean dashboard UX */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B111E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E2E4B;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #EA1A85;
+}
